@@ -7,17 +7,19 @@ import path from "path"
 
 dotenv.config()
 
-connectDB();
-
 const app = express()
 const PORT = process.env.PORT
 const __dirname = path.resolve();
 
 app.use(express.json())
-app.use(cors({
-  origin: "http://localhost:5173",
-}));
 
+// Fix CORS to allow both local and production origins
+app.use(cors({
+  origin: process.env.NODE_ENV === "production" 
+    ? "https://kiesmas.onrender.com" 
+    : "http://localhost:5173",
+  credentials: true
+}));
 
 app.use("/api/message", messageRoutes)
 
@@ -32,24 +34,21 @@ if (process.env.NODE_ENV === "production") {
 connectDB().then(() => {
   const server = app.listen(PORT, () => {
     console.log(`SERVER STARTED ON PORT: ${PORT}`)
-    connectDB()
   })
-})
-
-
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server')
-  server.close(() => {
-    console.log('HTTP server closed')
-    process.exit(0)
+  
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server')
+    server.close(() => {
+      console.log('HTTP server closed')
+      process.exit(0)
+    })
   })
-})
 
-process.on('SIGINT', () => {
-  console.log('SIGINT signal received: closing HTTP server')
-  server.close(() => {
-    console.log('HTTP server closed')
-    process.exit(0)
+  process.on('SIGINT', () => {
+    console.log('SIGINT signal received: closing HTTP server')
+    server.close(() => {
+      console.log('HTTP server closed')
+      process.exit(0)
+    })
   })
 })

@@ -28,7 +28,7 @@ const HomePage = () => {
       console.log('Fetching message for:', name.trim()); // Debug log
       
       // Replace with your actual API URL
-      const res = await axios.get(`http://localhost:5001/api/message/${name.trim()}`);
+      const res = await axios.get(`/api/message/${name.trim()}`);
       
       console.log('Response:', res.data); // Debug log
       

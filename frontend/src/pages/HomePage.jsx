@@ -70,7 +70,7 @@ const HomePage = () => {
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="flex items-center text-2xl font-bold text-[#1d351d] mb-8">
           <TreePine className="size-12 text-[#1d351d] mr-2"/>
-          It's <span className='text-[#8b181d] ml-2'>Kie</span>smas!
+          It's <span className='text-[#8b181d] ml-2'>Kie</span>smas
         </div>
         <div className="max-w-2xl mx-auto text-center">
           <div>

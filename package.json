@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Kie0611/kiesmas/issues"
   },
-  "homepage": "https://github.com/Kie0611/kiesmas#readme"
+  "homepage": "https://github.com/Kie0611/kiesmas#readme",
+  "dependencies": {
+    "react-snowfall": "^2.4.0"
+  }
 }
